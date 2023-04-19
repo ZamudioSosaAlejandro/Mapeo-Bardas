@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="DataCrack" />
+
+<meta name="date" content="2023-04-18" />
+
+<title>Mapeo Bardas</title>
+
+<script src="Mapeo-bardas-HTML_files/header-attrs-2.21/header-attrs.js"></script>
+<script src="Mapeo-bardas-HTML_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Mapeo-bardas-HTML_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Mapeo-bardas-HTML_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Mapeo-bardas-HTML_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Mapeo-bardas-HTML_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="Mapeo-bardas-HTML_files/navigation-1.1/tabsets.js"></script>
+<link href="Mapeo-bardas-HTML_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Mapeo-bardas-HTML_files/highlightjs-9.12.0/highlight.js"></script>
+<script src="Mapeo-bardas-HTML_files/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="Mapeo-bardas-HTML_files/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="Mapeo-bardas-HTML_files/leaflet-1.3.1/leaflet.js"></script>
+<link href="Mapeo-bardas-HTML_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="Mapeo-bardas-HTML_files/proj4-2.6.2/proj4.min.js"></script>
+<script src="Mapeo-bardas-HTML_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="Mapeo-bardas-HTML_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="Mapeo-bardas-HTML_files/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="Mapeo-bardas-HTML_files/popup-0.0.1/popup.js"></script>
+<link id="image-point-WhatsApp Image 2023-04-17 at 11.52.07 AM - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 11.52.07 AM - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 12.31.12 PM (2) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 12.31.12 PM (2) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 2.54.00 PM (1) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 2.54.00 PM (1) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 1.59.23 PM (1) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 1.59.23 PM (1) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 2.42.54 PM (1) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 2.42.54 PM (1) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 3.36.13 PM (1) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 3.36.13 PM (1) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 4.08.37 PM (1) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 4.08.37 PM (1) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 4.57.55 PM (2) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 4.57.55 PM (2) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-18 at 9.44.43 AM - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-18 at 9.44.43 AM - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 6.29.22 PM (1) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 6.29.22 PM (1) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 6.29.23 PM (2) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 6.29.23 PM (2) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 7.33.29 PM (4) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 7.33.29 PM (4) - KARLA PEREZ.jpeg"/>
+<link id="image-point-WhatsApp Image 2023-04-17 at 7.33.29 PM (6) - KARLA PEREZ-attachment" rel="attachment" href="Mapeo-bardas-HTML_files/image-point-0.0.1/WhatsApp Image 2023-04-17 at 7.33.29 PM (6) - KARLA PEREZ.jpeg"/>
+<script src="Mapeo-bardas-HTML_files/kePrint-0.0.1/kePrint.js"></script>
+<link href="Mapeo-bardas-HTML_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Mapeo Bardas</h1>
+<h4 class="author">DataCrack</h4>
+<h4 class="date">2023-04-18</h4>
+
+</div>
+
+
+<p><img src="images/DataC_logo.png" /></p>
+<div id="mapeo-bardas" class="section level1">
+<h1>Mapeo bardas</h1>
+<div id="htmlwidget-3902b576be21599d37ca" style="width:1000px;height:1000px;" class="leaflet html-widget "></div>
+<script type="application/json" data-for="htmlwidget-3902b576be21599d37ca">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[20.6611097566728,20.6610306820308,20.6590685371939,20.658978,20.6484563540354,20.6670817026452,20.6713755099864,20.686768830875,20.6599236363704,20.7044022805834,20.7045397006627,20.6938555144521,20.6934468416366],[-103.700299486506,-103.70016806296,-103.708825428836,-103.709092,-103.7018835,-103.742050428836,-103.741325671164,-103.8469761,-103.938109301592,-103.9713487,-103.971146071164,-103.971694,-103.971860513492],null,null,"point",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,["Mun: Tala, Col =Higuerita","Mun: TALA, Col =NA","Mun: TALA, Col =LOS FRESNOS","Mun: TALA, Col =FRESNO","Mun: TALA, Col =SAN JAVIER","Mun: EL REFUGIO, Col =NO HAY","Mun: EL REFUGIO, Col =SAN JAVIER","Mun: TEUCHITLAN, Col =NO","Mun: SAN IGNACIO, Col =NO","Mun: AHUALULCO DE MERCADO, Col =CENTRO","Mun: AHUALULCO DE MERCADO, Col =CENTRO","Mun: AHUALULCO DE MERCADO, Col =FONAPO ARBOLEDAS","Mun: AHUALULCO DE MERCADO, Col =FONAPO ARBOLEDAS"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"imagePopup","args":[["WhatsApp Image 2023-04-17 at 11.52.07 AM - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 12.31.12 PM (2) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 2.54.00 PM (1) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 1.59.23 PM (1) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 2.42.54 PM (1) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 3.36.13 PM (1) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 4.08.37 PM (1) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 4.57.55 PM (2) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-18 at 9.44.43 AM - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 6.29.22 PM (1) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 6.29.23 PM (2) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 7.33.29 PM (4) - KARLA PEREZ.jpeg","WhatsApp Image 2023-04-17 at 7.33.29 PM (6) - KARLA PEREZ.jpeg"],"point",[300,300,300,300,300,300,300,300,300,300,300,300,300],[300,300,300,300,300,300,300,300,300,300,300,300,300],["l","l","l","l","l","l","l","l","l","l","l","l","l"],["WhatsApp Image 2023-04-17 at 11.52.07 AM - KARLA PEREZ","WhatsApp Image 2023-04-17 at 12.31.12 PM (2) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 2.54.00 PM (1) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 1.59.23 PM (1) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 2.42.54 PM (1) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 3.36.13 PM (1) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 4.08.37 PM (1) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 4.57.55 PM (2) - KARLA PEREZ","WhatsApp Image 2023-04-18 at 9.44.43 AM - KARLA PEREZ","WhatsApp Image 2023-04-17 at 6.29.22 PM (1) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 6.29.23 PM (2) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 7.33.29 PM (4) - KARLA PEREZ","WhatsApp Image 2023-04-17 at 7.33.29 PM (6) - KARLA PEREZ"],false,{"maxWidth":2000}]}],"setView":[[20.66682,-103.39182],7.5,[]],"limits":{"lat":[20.6484563540354,20.7045397006627],"lng":[-103.971860513492,-103.70016806296]}},"evals":[],"jsHooks":[]}</script>
+<div id="municipios-con-más-anuncios" class="section level2">
+<h2>Municipios con más anuncios</h2>
+<p><img src="Mapeo-bardas-HTML_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="tabla-conteo" class="section level2">
+<h2>Tabla conteo</h2>
+<table class="table table-striped table-hover table-condensed" style="font-size: 13px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Fecha
+</th>
+<th style="text-align:left;">
+Municipio
+</th>
+<th style="text-align:left;">
+Colonia
+</th>
+<th style="text-align:right;">
+Distrito
+</th>
+<th style="text-align:left;">
+Permiso
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2023-04-17 23:56:21
+</td>
+<td style="text-align:left;">
+tala
+</td>
+<td style="text-align:left;">
+higuerita
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Sí
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:02:57
+</td>
+<td style="text-align:left;">
+tala
+</td>
+<td style="text-align:left;">
+na
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Sí
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:04:39
+</td>
+<td style="text-align:left;">
+tala
+</td>
+<td style="text-align:left;">
+los fresnos
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:07:12
+</td>
+<td style="text-align:left;">
+tala
+</td>
+<td style="text-align:left;">
+fresno
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:08:23
+</td>
+<td style="text-align:left;">
+tala
+</td>
+<td style="text-align:left;">
+san javier
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:11:55
+</td>
+<td style="text-align:left;">
+el refugio
+</td>
+<td style="text-align:left;">
+no hay
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Sí
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:17:59
+</td>
+<td style="text-align:left;">
+el refugio
+</td>
+<td style="text-align:left;">
+san javier
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Sí
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:24:06
+</td>
+<td style="text-align:left;">
+teuchitlan
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:31:08
+</td>
+<td style="text-align:left;">
+san ignacio
+</td>
+<td style="text-align:left;">
+no
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Sí
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:34:24
+</td>
+<td style="text-align:left;">
+ahualulco de mercado
+</td>
+<td style="text-align:left;">
+centro
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:37:06
+</td>
+<td style="text-align:left;">
+ahualulco de mercado
+</td>
+<td style="text-align:left;">
+centro
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:39:42
+</td>
+<td style="text-align:left;">
+ahualulco de mercado
+</td>
+<td style="text-align:left;">
+fonapo arboledas
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2023-04-18 10:42:30
+</td>
+<td style="text-align:left;">
+ahualulco de mercado
+</td>
+<td style="text-align:left;">
+fonapo arboledas
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
