@@ -7,8 +7,6 @@ output:
     self_contained: no
 ---
 
-![](images/DataC_logo.png)
-
 # Mapeo bardas
 
 ```{r include=T, message=FALSE, warning=FALSE, echo=FALSE}
@@ -106,7 +104,6 @@ leaflet(width = 1000, height = 1000) %>%
 
 
 ```
-
 
 ## Municipios con más anuncios
 
