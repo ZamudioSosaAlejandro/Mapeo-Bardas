@@ -1,0 +1,143 @@
+---
+title: "Mapeo Bardas"
+author: "DataCrack"
+date: "2023-04-18"
+output: 
+  html_document: 
+    self_contained: no
+---
+
+![](images/DataC_logo.png)
+
+# Mapeo bardas
+
+```{r include=T, message=FALSE, warning=FALSE, echo=FALSE}
+library(readxl)
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(stringi)
+library(googledrive)
+#
+df_anuncios = read_xlsx("F:/Data Crack/Chema/Mapeo pintado de bardas/Fomulario (Respuestas).xlsx") %>% 
+  rename(Coordenadas = `Coordenadas (copia y pega aquí las coordenadas que te arrojó Google Maps)`,
+         Distrito = `Distrito electoral`)
+
+### sacamos la lomgitud y latitud
+df_anuncios <- df_anuncios %>%
+  separate(Coordenadas, into = c("latitud", "longitud"), sep = ", ", convert = TRUE) 
+
+df_anuncios$URL_Foto = drive_link(df_anuncios$`Foto de barda terminada`)
+
+x = googledrive::drive_get(df_anuncios$URL_Foto)
+
+df_anuncios$nombre_foto = x$name
+
+
+#####
+df_anuncios = df_anuncios %>% mutate(nombre_foto = paste0("F:/Data Crack/Chema/Mapeo pintado de bardas/Foto de barda terminada (File responses)/",nombre_foto))
+
+
+library(leafpop)
+
+leaflet(width = 1000, height = 1000) %>%
+  addTiles() %>%
+  setView(lat = 20.66682, lng = -103.39182, zoom = 7.5) %>% 
+  addMarkers(lng = df_anuncios$longitud, lat = df_anuncios$latitud,  group = "point", 
+             label =  paste0("Mun: ",df_anuncios$Municipio, ", ", "Col =", df_anuncios$Colonia)) %>% 
+  addPopupImages(df_anuncios$nombre_foto, group = "point", width = 300, height = 300)
+
+
+
+
+#Jal_poly_distrito_l = read_sf("F:/Data Crack/Chema/Dash Revocación de mandato/Poligonos_secciones/DISTRITO_LOCAL.shp",
+#                       options = "ENCODING=latin1") %>% filter(ENTIDAD == 14)
+# trasformamos los datos
+#Jal_poly_distrito_l  = st_transform(Jal_poly_distrito_l, crs = "+proj=longlat +datum=WGS84")
+
+# datos de las elección
+#df_eleccion_2021 = read_xlsx("F:/Data Crack/Chema/Dash Revocación de #mandato/resultados_ayuntamientos_casillas2021.xlsx")
+
+
+#df_eleccion_2021_s = df_eleccion_2021 %>% 
+#  group_by(SECCION) %>% summarise(
+#    PAN = sum(PAN, na.rm = T),
+#    PRI = sum(PRI, na.rm = T), 
+#    PRD = sum(PRD, na.rm = T),
+#    PVEM = sum(PVEM, na.rm = T),
+#    PT = sum(PT, na.rm = T),
+#    MC = sum(MC, na.rm = T),
+#    MORENA = sum(MORENA, na.rm = T),
+#    PES = sum(PES, na.rm = T),
+#    SOMOS = sum(SOMOS, na.rm = T),
+#    HAGAMOS = sum(HAGAMOS, na.rm = T),
+#    FUTURO = sum(FUTURO, na.rm = T), 
+#    TOTAL_VOTOS = sum(TOTAL_VOTOS))
+
+
+#df_eleccion_2021_s = df_eleccion_2021_s %>% 
+#  mutate(Proporcion_Morena =round((MORENA/TOTAL_VOTOS)*100  , 2)) %>% 
+#  rename(seccion = SECCION)
+#Jal_poly_secc = read_sf("F:/Data Crack/Chema/Dash Revocación de mandato/Poligonos_secciones/SECCION.shp",
+ #                      options = "ENCODING=latin1") %>% filter(entidad == 14)
+
+
+#Jal_poly_secc  = st_transform(Jal_poly_secc, crs = "+proj=longlat +datum=WGS84")
+
+
+
+
+#df_poly_eleccion_s = merge(Jal_poly_secc, df_eleccion_2021_s, by = c("seccion"), all.x = T)
+
+
+
+#pal <- colorNumeric("BuPu", NULL)
+
+
+#leaflet(width = 1000, height = 1000) %>%
+#  addTiles() %>%
+#  setView(lat = 20.66682, lng = -103.39182, zoom = 7.5) %>% 
+#  addMarkers(lng = df_anuncios$longitud, lat = df_anuncios$latitud,  group = "pnt", 
+#             label =  paste0("Mun: ",df_anuncios$Municipio, ", ", "Col =", df_anuncios$Colonia)) %>% 
+#  addPopupImages(df_anuncios$nombre_foto, group = "pnt", width = 300, height = 300) %>% 
+#  addPolygons(data =df_poly_eleccion_s, stroke = FALSE, smoothFactor = 0.3, fillOpacity = .8,
+#              fillColor = ~pal(df_poly_eleccion_s$Proporcion_Morena), 
+#              label = paste0(df_poly_eleccion_s$seccion, ", Prop votos = ",df_poly_eleccion_s$Proporcion_Morena, "%"))
+
+
+```
+
+
+## Municipios con más anuncios
+
+```{r include=T,message=FALSE, warning=FALSE, echo=FALSE}
+
+df_anuncios = df_anuncios %>% mutate(Municipio = tolower(Municipio), 
+                                     Colonia = tolower(Colonia))
+
+df_anuncios %>% ggplot(aes(Municipio))+ 
+  geom_bar( fill = "#CD2626") +
+  coord_flip() +
+  theme_bw() +
+  labs(x = "", y = "Número de bardas", title = "")
+  
+
+```
+
+## Tabla conteo
+
+```{r include=T,message=FALSE, warning=FALSE, echo=FALSE}
+
+###############
+# Principales tws con me gusta
+tws_most_p = df_anuncios  %>%
+  rename(Fecha = `Marca temporal`, ) %>% 
+  select(1,5,6,9,10)
+
+library(kableExtra)
+
+kbl(tws_most_p) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), font_size = 13) 
+
+
+```
